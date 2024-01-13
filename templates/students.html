@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+</head>
+<body>
+    <h2>Update Student</h2>
+    
+    <form method="post" enctype="multipart/form-data" action="{% url 'student-registration'  %}">
+        {% csrf_token %}
+        
+        <label for="student_no">Student Number:</label>
+        <input type="text" name="student_no" value="{{ student.student_no }}" required><br>
+        
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="{{ student.first_name }}" required><br>
+        
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" name="middle_name" value="{{ student.middle_name }}"><br>
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value="{{ student.last_name }}" required><br>
+        
+        <label for="sex">Sex:</label>
+        <select name="sex" required>
+            {% for sex_option, display_text in student.SEX_CHOICES %}
+                <option value="{{ sex_option }}" {% if sex_option == student.sex %}selected{% endif %}>{{ display_text }}</option>
+            {% endfor %}
+        </select><br>
+
+
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" value="{{ student.dob }}" required><br>
+        
+        <label for="home_address">Home Address:</label>
+        <textarea name="home_address" required>{{ student.home_address }}</textarea><br>
+        
+        <label for="city">City:</label>
+        <select name="city" required>
+            {% for city, _ in student.CITY_CHOICES %}
+                <option value="{{ city }}" {% if city == student.city %}selected{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="state">State:</label>
+        <select name="state" required>
+            {% for state, _ in student.STATE_CHOICES %}
+                <option value="{{ state }}" {% if state == student.state %}selected{% endif %}>{{ state }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="picture">Picture:</label>
+        <input type="file" name="picture"><br>
+        
+        <label for="allergies">Allergies:</label>
+        <textarea name="allergies">{{ student.allergies }}</textarea><br>
+        
+        <label for="speci990al_needs">Special Needs:</label>
+        <textarea name="special_needs">{{ student.special_needs }}</textarea><br>
+        
+        <label for="emergency_no">Emergency Number:</label>
+        <input type="text" name="emergency_no" value="{{ student.emergency_no }}" required><br>
+        
+     
+
+
+        <label for="state">State:</label>
+        <select name="state" required>
+            {% for state, _ in student.STATE_CHOICES %}
+                <option value="{{ state }}" {% if state == student.state %}selected{% endif %}>{{ state }}</option>
+            {% endfor %}
+        </select><br>
+
+        
+        <input type="submit" value="Update Student">
+    </form>
+</body>
+</html>
+
